@@ -1,0 +1,1056 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বৰা মেছ - Memories Timeline</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee+Inline&family=Goldman:wght@400;700&family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --accent: #3498db;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Combined Header & Hero Section */
+        .hero-container {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url("images/main1.jpeg") center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Twinkling Stars */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 1rem 2rem;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .glow-text {
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            text-shadow:
+                0 0 3px rgba(255, 255, 255, 0.6),
+                0 0 6px rgba(3, 6, 6, 0.3);
+            transition: text-shadow 0.5s ease-in-out;
+        }
+
+        .glow {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow:
+                0 0 5px white,
+                0 0 10px white,
+                0 0 20px white,
+                0 0 40px rgb(17, 25, 25),
+                0 0 40px rgb(16, 21, 21),
+                0 0 30px rgb(3, 13, 13);
+        }
+
+        /* Header Style */
+        .header {
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute; /* Changed to absolute */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            margin-top: 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .assamese {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            font-size: 1.6rem;
+            color: var(--accent);
+            transition: all 0.3s ease;
+            stroke-width: 0%;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            display: inline-block;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: white;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Content */
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            z-index: 2;
+            margin-top: 0
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content h2 .assamese {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: "Luckiest Guy", cursive;
+        }
+
+        .luckiest-guy-regular {
+            font-family: "Luckiest Guy", cursive;
+            font-weight: 200;
+            font-style: normal;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Timeline Section */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-date {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .timeline-content p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-img:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .gallery .section-title h2 {
+            color: white;
+        }
+        
+        .gallery .section-title h2::after {
+            background-color: var(--accent);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            height: 250px;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            bottom: 0;
+        }
+        
+        .gallery-item-overlay h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery-item-overlay p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Batch Section */
+        .batch-section {
+            background-color: #f5f5f5;
+        }
+        
+        .batch-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+       
+        
+      
+        
+        .batch-content {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .batch-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .batch-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .member-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .member-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .member-card:hover .member-img img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+        }
+        
+        .member-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .member-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: var(--light);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Scroll To Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: #c0392b;
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 .assamese {
+                font-size: 3rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Combined Header & Hero Section -->
+    <div class="hero-container">
+        <!-- Twinkling stars will be added here by JavaScript -->
+        <div class="stars-container" id="starContainer"></div>
+        
+        <header class="header">
+            <div class="logo">
+                <h1><span class="assamese">বৰা মেছ</span></h1> 
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#batches">Batches</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="hero-content">
+            <h2>
+                <span class="assamese floating">House of JODs</span>
+            </h2>
+            <div class="glow-text">
+                <p>A timeline of our laughter, shared moments, and unforgettable memories at Jorhat Engineering College.</p></div> 
+            <div>
+                <a href="#timeline" class="btn">Explore Memories</a>
+                <a href="#gallery" class="btn btn-outline">View Gallery</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <section class="section" id="timeline">
+        <div class="section-title">
+            <h2>Our Timeline</h2>
+        </div>
+        <div class="timeline">
+            <!-- Timeline items will be added dynamically with JavaScript -->
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="gallery">
+        <div class="section-title">
+            <h2>Photo Gallery</h2>
+        </div>
+        <div class="gallery-container">
+            <!-- Gallery items will be added dynamically with JavaScript -->
+        </div>
+    </section>
+
+    <!-- Batch Section -->
+    <section class="section batch-section" id="batches">
+        <div class="section-title">
+            <h2>Our Batches</h2>
+        </div>
+        <div class="batch-tabs">
+            <!-- Batch tabs will be added dynamically with JavaScript -->
+        </div>
+        <div class="batch-content-container">
+            <!-- Batch content will be added dynamically with JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <span class="assamese">বৰা মেছ</span> 
+        </div>
+        
+        <div class="copyright">
+            &copy; Developed by Himan Dutta. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create twinkling stars
+            function createStars() {
+                const starsContainer = document.getElementById('starContainer');
+                
+                // Create 100 stars
+                for (let i = 0; i < 100; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    
+                    // Random properties
+                    const size = Math.random() * 3;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const duration = 2 + Math.random() * 3;
+                    const delay = Math.random() * 5;
+                    
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.left = `${posX}%`;
+                    star.style.top = `${posY}%`;
+                    star.style.setProperty('--duration', `${duration}s`);
+                    star.style.animationDelay = `${delay}s`;
+                    
+                    starsContainer.appendChild(star);
+                }
+            }
+            
+            createStars();
+
+            // Smooth scrolling for all links with hash (#)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('active');
+                } else {
+                    scrollToTopBtn.classList.remove('active');
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Timeline data
+            const timelineData = [
+                {
+                    date: "March 2025",
+                    title: "Memories from our Pasighat Trip",
+                    description: "Cherishing moments of friendship, laughter, and the beauty of nature.",
+                    image: "images/11.jpeg",
+                    side: "left"
+                },
+                {
+                    date: "October 2023",
+                    title: "Intro Night",
+                    description: "A morning of new beginnings, laughter, and unforgettable brotherhood.",
+                    image: "images/12.jpeg",
+                    side: "right"
+                },
+                {
+                    date: "January 2024",
+                    title: "Reunion",
+                    description: "A beautiful reunion at our senior’s wedding.",
+                    image: "images/13.jpeg",
+                    side: "left"
+                },
+                {
+                    date: "February 2024",
+                    title: "Escape to Bhalukpong",
+                    description: "An unforgettable trip filled with laughter, adventure, and peace amidst nature's beauty.",
+                    image: "images/14.jpeg",
+                    side: "right"
+                },
+                {
+                    date: "Old memories",
+                    title: "Remembering Our Super Seniors",
+                    description: "A moment of gratitude and nostalgia – remembering the ones who built the path before us.",
+                    image: "images/15.jpeg",
+                    side: "left"
+                }
+            ];
+
+            // Populate timeline
+            const timeline = document.querySelector('.timeline');
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = `timeline-item ${item.side}`;
+                timelineItem.innerHTML = `
+                    <div class="timeline-content">
+                        <div class="timeline-date">${item.date}</div>
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <img src="${item.image}" alt="${item.title}" class="timeline-img">
+                    </div>
+                `;
+                timeline.appendChild(timelineItem);
+                
+                // Animate timeline items when they come into view
+                setTimeout(() => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    
+                    observer.observe(timelineItem);
+                }, index * 200);
+            });
+
+            // Gallery data
+            const galleryData = [
+                {
+                    title: "Farewell",
+                   
+                    image: "images/PHNS3045.JPG"
+                },
+                {
+                    title: "Winter Night",
+                  
+                    image: "images/25.jpeg"
+                },
+                {
+                    title: "Seniors",
+                
+                    image: "images/24.jpeg",
+                },
+                {
+                    title: "Fun",
+                 
+                    image: "images/27.jpeg"
+                },
+                {
+                    title: "Mess Ending",
+                   
+                    image: "images/28.jpeg"
+                },
+                
+                {
+                    title: "Dinner Time",
+                   
+                    image: "images/29.jpeg"
+                },
+               
+            ];
+
+            // Populate gallery
+            const galleryContainer = document.querySelector('.gallery-container');
+            galleryData.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="gallery-item-overlay">
+                        <h3>${item.title}</h3>
+                        
+                    </div>
+                `;
+                galleryContainer.appendChild(galleryItem);
+            });
+
+
+            // Populate batch tabs and content
+            const batchTabs = document.querySelector('.batch-tabs');
+            const batchContentContainer = document.querySelector('.batch-content-container');
+            
+            batchData.forEach((batch, index) => {
+                // Create tab
+                const tab = document.createElement('div');
+                tab.className = `batch-tab ${index === 0 ? 'active' : ''}`;
+               
+                
+                tab.addEventListener('click', function() {
+                    // Update active tab
+                    document.querySelectorAll('.batch-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active content
+                    document.querySelectorAll('.batch-content').forEach(c => c.classList.remove('active'));
+                    document.querySelector(`.batch-content[data-year="${this.dataset.year}"]`).classList.add('active');
+                });
+                
+                batchTabs.appendChild(tab);
+                
+                // Create content
+                const content = document.createElement('div');
+                content.className = `batch-content ${index === 0 ? 'active' : ''}`;
+                content.dataset.year = batch.year;
+                
+                const membersContainer = document.createElement('div');
+                membersContainer.className = 'batch-members';
+                
+                batch.members.forEach(member => {
+                    const memberCard = document.createElement('div');
+                    memberCard.className = 'member-card';
+                    memberCard.innerHTML = `
+                        <div class="member-img">
+                            <img src="${member.image}" alt="${member.name}">
+                        </div>
+                        <div class="member-info">
+                            <h3>${member.name}</h3>
+                            <p>${member.role}</p>
+                            <div class="social-links">
+                                <a href="${member.social.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="${member.social.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="${member.social.linkedin}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    `;
+                    membersContainer.appendChild(memberCard);
+                });
+                
+                content.appendChild(membersContainer);
+                batchContentContainer.appendChild(content);
+            });
+        });
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
